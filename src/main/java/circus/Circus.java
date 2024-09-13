@@ -25,7 +25,7 @@ public class Circus {
     private static void makeAnimalsTalk() {
         for (Animal a : animals) {
             System.out.println(a);
-            System.out.println(a.speak());
+            printArrayListSize(a.speak());
         }
     }
 
@@ -41,13 +41,38 @@ public class Circus {
         }
         return total;
     }
+    private static void printAllAnimals(ArrayList<Animal> animalsArrayList) {
+        for (Animal a: animalsArrayList) {
+            System.out.println(a);
+        }
+    }
     private static void printArrayListSize(String animalsArrayList) {
         System.out.println(animalsArrayList);
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println("Number of animals in the array are: " + animals.length);
+        // This does not work as arrays cannot change size
+        // animals[3] = new Elephant("Eli");
+        ArrayList<Animal> animalsArrayList = new ArrayList<>(Arrays.asList(animals));
+        printAllAnimals(animalsArrayList);
+        Elephant strongOne = new Elephant("Strong One");
+        animalsArrayList.add(strongOne);
+        Duck andy = new Duck("Andy");
+        animalsArrayList.add(andy);
+        printAllAnimals(animalsArrayList);
+        printArrayListSize("Size of our animal array list: " + animalsArrayList.size());
+        System.out.println("Strong One is in position: " + (animalsArrayList.indexOf(strongOne) + 1));
+        System.out.println("Before sorting: ");
+        printAllAnimals(animalsArrayList);
+        animalsArrayList.sort(AnimalNameComparator);
+        System.out.println("After sorting: ");
+        printAllAnimals(animalsArrayList);
+
+        // makeAnimalsTalk();
+        // System.out.println("Total value of animals " + calculateAssetValue(animals));
+        // System.out.println("Total value of equipments " + calculateAssetValue(equipments));
     }
+
+
 }
