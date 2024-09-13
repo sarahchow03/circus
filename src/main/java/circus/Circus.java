@@ -1,13 +1,13 @@
 package circus;
 
 import circus.animal.*;
+import circus.stuff.Cage;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import static circus.animal.Animal.AnimalNameComparator;
 
 public class Circus {
@@ -50,6 +50,7 @@ public class Circus {
         System.out.println(animalsArrayList);
     }
 
+
     public static void main(String[] args) {
         System.out.println("Number of animals in the array are: " + animals.length);
         // This does not work as arrays cannot change size
@@ -72,6 +73,31 @@ public class Circus {
         // makeAnimalsTalk();
         // System.out.println("Total value of animals " + calculateAssetValue(animals));
         // System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        animalArrayList.add(new Tiger("Sherkhan"));
+        System.out.println("Number of animals: " + animalArrayList.size());
+
+        Duck louie = new Duck("Louie");
+        animalArrayList.add(louie);
+        animalArrayList.add(strongOne);
+
+        printAllAnimals(animalArrayList);
+
+        Cage<Duck> duckCage = new Cage<>();
+        Duck duck = new Duck("Henry");
+        duckCage.lockUp(duck);
+        Parrot parrot = new Parrot("Peter");
+        Cage<Parrot> parrotCage = new Cage<>();
+        parrotCage.lockUp(parrot);
+
+        ArrayList<Cage> cages = new ArrayList<>();
+        cages.add(duckCage);
+        cages.add(parrotCage);
+
+        for(Cage c: cages) {
+            c.release();
+        }
     }
 
 
