@@ -41,6 +41,9 @@ public class Circus {
         }
         return total;
     }
+    private static void printArrayListSize(String animalsArrayList) {
+        System.out.println(animalsArrayList);
+    }
 
     public static void main(String[] args) {
         makeAnimalsTalk();
